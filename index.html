@@ -31,7 +31,7 @@
             <span id="name-errorAge" class="error-message"></span>
           </div>
         </div>
-
+        <button id="open-modal-btn">Thêm</button>
         <!-- Nút reset -->
         <button id="reset-btn">Reset</button>
       </div>
@@ -42,12 +42,34 @@
           <tr>
             <th id="sort-name">Tên</th>
             <th id="sort-age">Tuổi</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           <!-- Các dòng dữ liệu sẽ được chèn vào đây -->
         </tbody>
       </table>
+    </div>
+
+    <!-- Modal cho thêm/sửa sinh viên -->
+    <div id="student-modal" class="modal">
+      <div class="modal-content">
+        <div class="close-model1">
+          <h2 id="modal-title">Thêm Sinh Viên</h2>
+          <span class="close">&times;</span>
+        </div>
+        <form id="student-form">
+          <div class="input-group">
+            <label for="student-name">Tên:</label>
+            <input type="text" id="student-name" required />
+          </div>
+          <div class="input-group">
+            <label for="student-age">Tuổi:</label>
+            <input type="number" id="student-age" required />
+          </div>
+          <button type="submit" id="save-student-btn">Lưu</button>
+        </form>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -1,29 +1,45 @@
 $(document).ready(function () {
-  let students = [];
+  let students = JSON.parse(localStorage.getItem("students")) || [];
+  let editIndex = -1;
   // Load dữ liệu từ file JSON
   function loadStudents() {
-    $.getJSON("./students.json", function (data) {
-      students = data;
+    const storedStudents = localStorage.getItem("students");
+    if (storedStudents) {
+      students = JSON.parse(storedStudents);
       renderTable(students);
-    });
+    } else {
+      // If no data in localStorage, load from JSON file (you can adjust this as needed)
+      $.getJSON("./students.json", function (data) {
+        students = data;
+        renderTable(students);
+        saveStudents(); // Save loaded data to localStorage
+      });
+    }
   }
   // Render bảng dữ liệu
   function renderTable(data) {
     const tbody = $("#student-table tbody");
     tbody.empty();
-    data.forEach((student) => {
+    data.forEach((student, index) => {
       const row = `<tr>
-                <td>${student.name}</td>
-                <td>${student.age}</td>
-            </tr>`;
+                    <td>${student.name}</td>
+                    <td>${student.age}</td>
+                    <td>
+                      <button class="edit-btn" data-index="${index}">Sửa</button>
+                      <button class="delete-btn" data-index="${index}">Xóa</button>
+                    </td>
+                  </tr>`;
       tbody.append(row);
     });
+  }
+  // Save students to localStorage
+  function saveStudents() {
+    localStorage.setItem("students", JSON.stringify(students));
   }
   // Sắp xếp bảng theo tên hoặc tuổi
   function sortTableBy(field) {
     if (field == "name") {
       students.sort((a, b) => {
-        // Lấy phần tử cuối cùng của tên
         const lastNameA = a[field].split(" ").pop().toLowerCase();
         const lastNameB = b[field].split(" ").pop().toLowerCase();
         if (lastNameA < lastNameB) return -1;
@@ -37,13 +53,14 @@ $(document).ready(function () {
         return ageA - ageB;
       });
     }
+    saveStudents();
     renderTable(students);
   }
+
   // Tìm kiếm theo tên và bôi đỏ
   $("#search-name-btn").click(function () {
     const searchText = $("#name-search").val().toLowerCase();
 
-    // Kiểm tra nếu input trống
     if (searchText.trim() === "") {
       $("#name-error").text("Vui lòng nhập tên để tìm kiếm.");
       return;
@@ -57,17 +74,17 @@ $(document).ready(function () {
       }
     });
   });
+
   // Lọc theo tuổi và ẩn
   $("#filter-age-btn").click(function () {
     const ageFilter = parseInt($("#age-filter").val(), 10);
 
-    // Kiểm tra nếu giá trị không phải là số dương
     if (isNaN(ageFilter) || ageFilter <= 0) {
       $("#name-errorAge").text("Vui lòng nhập giá trị tuổi dương lớn hơn 0.");
       return;
     }
     $("#student-table tbody tr").each(function () {
-      const ageCell = parseInt($(this).find("td:last").text(), 10);
+      const ageCell = parseInt($(this).find("td:last").prev().text(), 10);
       if (ageCell < ageFilter) {
         $(this).hide();
       } else {
@@ -78,21 +95,25 @@ $(document).ready(function () {
 
   // Nút reset
   $("#reset-btn").click(function () {
+    saveStudents();
     renderTable(students);
     $("#student-table tbody tr").css("background-color", "").show();
     $("#name-search").val("");
     $("#age-filter").val("");
-    $("#name-error").text(""); // Reset lại lỗi
+    $("#name-error").text("");
     $("#name-errorAge").text("");
   });
+
   // Xóa lỗi khi thay đổi nội dung trong input name
   $("#name-search").on("input", function () {
     $("#name-error").text("");
   });
-  // xóa lỗi khi thay đổi input Age
+
+  // Xóa lỗi khi thay đổi input Age
   $("#age-filter").on("input", function () {
     $("#name-errorAge").text("");
   });
+
   // Sự kiện click để sắp xếp
   $("#sort-name").click(function () {
     sortTableBy("name");
@@ -100,6 +121,53 @@ $(document).ready(function () {
 
   $("#sort-age").click(function () {
     sortTableBy("age");
+  });
+
+  // Mở modal
+  $("#open-modal-btn").click(function () {
+    editIndex = -1;
+    $("#student-name").val("");
+    $("#student-age").val("");
+    $("#modal-title").text("Thêm Sinh Viên");
+    $("#student-modal").show();
+  });
+
+  // Đóng modal
+  $(".close").click(function () {
+    $("#student-modal").hide();
+  });
+
+  // Lưu sinh viên
+  $("#student-form").submit(function (event) {
+    event.preventDefault();
+    const name = $("#student-name").val();
+    const age = parseInt($("#student-age").val());
+
+    if (editIndex === -1) {
+      students.push({ name, age });
+    } else {
+      students[editIndex] = { name, age };
+    }
+    saveStudents();
+    renderTable(students);
+    $("#student-modal").hide();
+  });
+
+  // Sửa sinh viên
+  $(document).on("click", ".edit-btn", function () {
+    editIndex = $(this).data("index");
+    const student = students[editIndex];
+    $("#student-name").val(student.name);
+    $("#student-age").val(student.age);
+    $("#modal-title").text("Sửa Sinh Viên");
+    $("#student-modal").show();
+  });
+  // Xóa sinh viên
+  $(document).on("click", ".delete-btn", function () {
+    const index = $(this).data("index");
+    students.splice(index, 1);
+    saveStudents();
+    renderTable(students);
   });
 
   // Load dữ liệu ban đầu
