@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+    <script src="jquery-2.2.3.min.js"></script>
+    <!-- <script src="handlebars.js"></script> -->
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Liste note d'étudiant</h1>
+    <button id="button01">Hide</button>
+    <button id="button02">Show</button>
+    <br /><br />
+
+    <table id="table01">
+      <thead>
+        <tr>
+          <th><button id="button03">ID</button></th>
+          <th><button id="button04">Name</button></th>
+          <th><button id="button05">Age</button></th>
+          <th><button id="button06">Notes</button></th>
+        </tr>
+      </thead>
+      <tbody id="mytable"></tbody>
+    </table>
+    <h2>END</h2>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <script>
+    //add new function to Handlebars
+    Handlebars.registerHelper("uppercase", function (str) {
+      var result = str.toUpperCase();
+      return new Handlebars.SafeString(result);
+    });
+
+    Handlebars.registerHelper("list", function (items, options) {
+      const itemsAsHtml = items.map(
+        (item) => "<li>" + options.fn(item) + "</li>"
+      );
+      return "<ul>\n" + itemsAsHtml.join("\n") + "\n</ul>";
+    });
+
+    //add html content to div anh xoa div roi co anh huong gi ko ? ten file sai
+    var showContent = function (div, content) {
+      $(div).html(content);
+    };
+
+    //load template with data
+    var loadTmplAndShow = function (tmplPath, data, divToShow) {
+      $.get(tmplPath, function (html) {
+        var tmpl = Handlebars.compile(html);
+        var rs = tmpl(data);
+        showContent(divToShow, rs);
+      });
+    };
+    // data dạng json
+    var etudiants = [
+      {
+        ID: 1,
+        Name: "An An",
+        Age: 15,
+        Note: [
+          { name: "Maths", val: 15 },
+          { name: "Informatique", val: 10 },
+          { name: "Chimie", val: 17 },
+          { name: "Anglais", val: 15 },
+        ],
+      },
+      {
+        ID: 2,
+        Name: "Bao Bao",
+        Age: 17,
+        Note: [
+          { name: "Maths", val: 15 },
+          { name: "Informatique", val: 10 },
+          { name: "Chimie", val: 17 },
+          { name: "Anglais", val: 15 },
+        ],
+      },
+      {
+        ID: 3,
+        Name: "Long An",
+        Age: 16,
+        Note: [
+          { name: "Maths", val: 15 },
+          { name: "Informatique", val: 10 },
+          { name: "Chimie", val: 17 },
+          { name: "Anglais", val: 15 },
+        ],
+      },
+      {
+        ID: 4,
+        Name: "Ngo Dan",
+        Age: 16,
+        Note: [
+          { name: "Maths", val: 15 },
+          { name: "Informatique", val: 10 },
+          { name: "Chimie", val: 17 },
+          { name: "Anglais", val: 15 },
+        ],
+      },
+      {
+        ID: 5,
+        Name: "Vy Vy",
+        Age: 17,
+        Note: [
+          { name: "Maths", val: 15 },
+          { name: "Informatique", val: 10 },
+          { name: "Chimie", val: 17 },
+          { name: "Anglais", val: 15 },
+        ],
+      },
+    ];
+
+    loadTmplAndShow("./tmp01.html", etudiants, "#mytable");
+  </script>
+</html>

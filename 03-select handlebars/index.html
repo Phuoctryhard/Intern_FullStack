@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+
+    <script src="jquery-2.2.3.min.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="InputTool.js"></script>
+
+</head>
+
+<body>
+    <div id="div_01"></div>
+    <hr/>
+    
+    <hr/>
+    <div id="div_02"></div>
+    <hr/>
+    
+</body>
+
+<script>
+	//add new function to Handlebars
+	Handlebars.registerHelper('uppercase', function(str) {
+		var result = str.toUpperCase();   
+		return new Handlebars.SafeString(result);
+	});
+    Handlebars.registerHelper('select', function(value, options) {
+        var $el = $('<select />').html( options.fn(this) );
+        $el.find('[value="' + value + '"]').attr({'selected':'selected'});
+        return $el.html();	
+	});
+	
+	//load template with data
+    var loadTmplAndShow = function(tmplPath, data, divToShow ){
+        $.get(tmplPath, function(html){
+		    var tmpl 	= Handlebars.compile(html);
+		    var rs 		= tmpl(data);
+		    showContent (divToShow, rs);
+	    });
+    }
+	
+	//add html content to div
+	var  showContent = function (div, content){
+		$(div).html(content);
+
+        //---after show, we can see btn OK, then define event for this btn
+        $("#btn_show").off("click").on("click", function(e){
+            var	data = req_gl_data({
+			    dataZoneDom		: $("#div_01")									
+		    });
+
+            loadTmplAndShow ("./tmpl02.html", data01, "#div_02");		
+        });
+	}
+	
+	var data01 = {
+        "name": "Alan", 
+        "hometown": "Somewhere, TX",
+        "gender":"woman",
+        "kids": [{ "name": "Jimmy", "age": "12" }, { "name": "Sally", "age": "4" }]
+    };
+		
+	loadTmplAndShow ("./tmpl01.html", data01, "#div_01");    
+   
+</script>
+
+</html>

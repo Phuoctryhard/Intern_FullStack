@@ -1,0 +1,28 @@
+	<input type="text" class="objData" data-name="name" value="{{name}}" id="input">
+	<input type="number" class="objData" data-name="age" value="{{age}}"id="input">
+	{{#mon}}
+	<select class="objData" data-group="mon"  data-gindex="{{@index}}" data-name="tenmon" id="input">
+		{{#select tenmon}}
+		<option value="Toan">Toan</option>
+		<option value="Van">Van</option>
+		<option value="Tieng Anh">Tieng Anh</option>
+		{{/select}}
+	</select>	
+		<select class="objData" data-group="mon"  data-gindex="{{@index}}" data-name="diem" value="{{diem}}" id="input">
+		{{#select diem}}
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		{{/select}}
+	</select>
+	{{/mon}}
+	
+	<button id="btn_show" type="button">OK</button>

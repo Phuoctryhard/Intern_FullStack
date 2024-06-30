@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh Sách Sinh Viên</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="list-student">Danh Sách Sinh Viên</h1>
+      <div class="controls">
+        <!-- Input cho chức năng tìm kiếm theo tên -->
+        <div class="input-group">
+          <input type="text" id="name-search" placeholder="Nhập tên" />
+          <button id="search-name-btn">Tìm kiếm</button>
+          <div class="height-error">
+            <span id="name-error" class="error-message"></span>
+          </div>
+        </div>
+        <!-- Input cho chức năng ẩn theo tuổi -->
+        <div class="input-group">
+          <input
+            type="number"
+            min="0"
+            id="age-filter"
+            placeholder="Nhập tuổi"
+          />
+
+          <button id="filter-age-btn">Lọc tuổi</button>
+          <div class="height-error">
+            <span id="name-errorAge" class="error-message"></span>
+          </div>
+        </div>
+        <button id="open-modal-btn">Thêm</button>
+        <!-- Nút reset -->
+        <button id="reset-btn">Reset</button>
+      </div>
+
+      <!-- Bảng hiển thị danh sách sinh viên -->
+      <table id="student-table">
+        <thead>
+          <tr>
+            <th id="sort-name">Tên</th>
+            <th id="sort-age">Tuổi</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Các dòng dữ liệu sẽ được chèn vào đây -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal cho thêm/sửa sinh viên -->
+    <div id="student-modal" class="modal">
+      <div class="modal-content">
+        <div class="close-model1">
+          <h2 id="modal-title">Thêm Sinh Viên</h2>
+          <span class="close">&times;</span>
+        </div>
+        <form id="student-form">
+          <div class="input-group">
+            <label for="student-name">Tên:</label>
+            <input type="text" id="student-name" required />
+          </div>
+          <div class="input-group">
+            <label for="student-age">Tuổi:</label>
+            <input type="number" id="student-age" required />
+          </div>
+          <button type="submit" id="save-student-btn">Lưu</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

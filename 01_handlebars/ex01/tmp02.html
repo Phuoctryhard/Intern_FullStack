@@ -1,0 +1,12 @@
+{{#each this}}
+<tr>
+  <td>{{ID}}</td>
+  <td>{{Name}}</td>
+  <td>{{Age}}</td>
+  <!-- thêm cột ở table head  -->
+  <td>{{#Note}}{{Maths}}{{/Note}}</td>
+  <td>{{#Note}}{{Informatique}}{{/Note}}</td>
+  <td>{{#Note}}{{Chimie}}{{/Note}}</td>
+  <td>{{#Note}}{{Anglais}}{{/Note}}</td>
+</tr>
+{{/each}}

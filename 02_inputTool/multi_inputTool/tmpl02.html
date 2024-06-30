@@ -1,0 +1,9 @@
+{{#each this}}
+<div id="div_{{@index}}">
+	<p> ID : {{ID}}. Name: {{Name}}. Age:{{Age}}</p>
+    <ul>{{#Note}} 
+		<li>{{name}} : {{val}}</li>
+		{{/Note}}
+	</ul>
+</div>
+{{/each}}

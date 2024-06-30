@@ -1,0 +1,164 @@
+body{
+    background-color: gainsboro;
+   
+}
+.ds{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items:center;
+}
+#khoi{
+    border: #DEE1E6 solid 1px;
+    padding: 20px;
+    background-color:#283D5A ;
+    color:gainsboro;
+    width: 70%;
+    border-radius: 8px;
+    margin: auto;
+}
+#demuc{
+    display: flex;
+    justify-content:start
+}
+#name{
+    margin:auto;
+    border:none; 
+    color:#283D5A;
+    background-color: gainsboro;
+    font-size: 17px;
+}
+#age{
+    border:none; 
+    color:#283D5A;
+    background-color: gainsboro;
+    font-size: 17px;
+}
+#ages{
+    border:none; 
+    background-color:#283D5A;
+    color: gainsboro;
+    font-size: 17px;
+}
+#note{
+   
+    border:none; 
+    color:#283D5A;
+    background-color: gainsboro;
+    font-size: 17px;
+}
+#notes{
+    padding-left: 100px;
+    border:none; 
+    background-color:#283D5A;
+    color: gainsboro;
+    font-size: 17px;
+}
+#formsearch{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content:flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+#search{
+ display: flex;
+ margin: auto;
+ /* margin-left: 50px; */
+ /* margin-left:85% ; */
+ 
+}
+#inputsearch{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+}
+#buttonsearch{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+}
+#tieude{
+    color:#283D5A ;
+    /* margin: auto; */
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 30px;
+}
+#reset{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin: auto;
+    margin-left: 20px;
+}
+.khoilon{
+    display: flex;
+    justify-content:center;
+    width: 80%;
+}
+#inputsearchage{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+    margin-left:10px ;
+}
+#buttonsearchage{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+}
+#search1{
+    margin-bottom: 20px;
+    margin: auto;
+}
+#div_01{
+    color:#283D5A ;
+    margin: auto;
+    font-weight: bold;
+    font-size: 20px;
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+} 
+#input{
+    padding: 7px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom:10px ;
+}
+#btn_show{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+    background-color: #283D5A;
+    color: gainsboro;
+}
+#bang {
+    border: none;
+    width: 100%;
+}
+#bang th {
+    background-color: gainsboro;
+    color: #283D5A;
+    padding: 5px;
+}
+#bang td {
+    background-color: gainsboro;
+    color: #283D5A;
+    padding: 5px;
+}

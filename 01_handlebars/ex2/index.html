@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+
+    <script src="jquery-2.2.3.min.js"></script>
+    <script src="handlebars.js"></script>
+   
+
+
+</head>
+
+<body>
+    <div id="div_01"> 123 </div>
+    <div id="div_02"> 345 </div>
+</body>
+
+<script>
+	//add new function to Handlebars
+	Handlebars.registerHelper('uppercase', function(str) {
+		var result = str.toUpperCase();   
+		return new Handlebars.SafeString(result);
+	});
+	
+	//add html content to div
+	var  showContent = function (div, content){
+		$(div).html(content);
+	}
+
+    //load template with data
+    var loadTmplAndShow = function(tmplPath, data, divToShow ){
+        $.get(tmplPath, function(html){
+		    var tmpl 	= Handlebars.compile(html);
+		    var rs 		= tmpl(data);
+		    showContent (divToShow, rs);
+	    });
+    }
+	
+	var data01 = {
+        "name": "Alan", "hometown": "Somewhere, TX",
+        "kids": [{ "name": "Jimmy", "age": "12" }, { "name": "Sally", "age": "4" }]
+    };
+	    
+    var data02 = [{
+        "name": "Alan", "hometown": "Somewhere, TX",
+        "kids": [{ "name": "Jimmy", "age": "12" }, { "name": "Sally", "age": "4" }]
+    },
+    {
+        "name": "Hnv", "hometown": "Somewhere, TX",
+        "kids": [{ "name": "bc", "age": "12" }, { "name": "ac", "age": "4" }]
+    }];
+
+   
+    loadTmplAndShow ("./tmpl01.html", data01, "#div_01");
+    loadTmplAndShow ("./tmpl02.html", data02, "#div_02");  
+   
+</script>
+
+</html>

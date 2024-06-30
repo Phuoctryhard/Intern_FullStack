@@ -1,0 +1,28 @@
+// Hàm tải template và hiển thị dữ liệu
+// load template with data
+var loadTmplAndShow = function (tmplPath, data, divToShow) {
+  $.get(tmplPath, function (html) {
+    var tmpl = Handlebars.compile(html);
+    var rs = tmpl(data);
+    console.log(rs);
+    showContent(divToShow, rs);
+  });
+};
+=> mục đích : 
+Mục đích: Hàm này tải một template Handlebars từ một đường dẫn cụ thể,
+biên dịch template đó với dữ liệu và hiển thị kết quả trong một phần tử DOM.
+
+
++Chữ hoa :  //add new function to Handlebars 
+	Handlebars.registerHelper('uppercase', function(str) {
+		var result = str.toUpperCase();   
+		return new Handlebars.SafeString(result);
+	});
+
+  => {{firstname}} {{uppercase lastname}}
+
++ Block Helpers
+Handlebars.registerHelper("list", function(items, options) {
+  const itemsAsHtml = items.map(item => "<li>" + options.fn(item) + "</li>");
+  return "<ul>\n" + itemsAsHtml.join("\n") + "\n</ul>";
+});

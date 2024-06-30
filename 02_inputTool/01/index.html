@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+
+    <script src="jquery-2.2.3.min.js"></script>
+    <!-- <script src="handlebars.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="InputTool.js"></script>
+  </head>
+
+  <body>
+    <div id="div_01">123</div>
+    <hr />
+
+    <hr />
+    <div id="div_02"></div>
+    <hr />
+  </body>
+
+  <script>
+    //add new function to Handlebars
+    Handlebars.registerHelper("uppercase", function (str) {
+      var result = str.toUpperCase();
+      return new Handlebars.SafeString(result);
+    });
+
+    //load template with data
+    var loadTmplAndShow = function (tmplPath, data, divToShow) {
+      $.get(tmplPath, function (html) {
+        var tmpl = Handlebars.compile(html);
+        var rs = tmpl(data);
+        showContent(divToShow, rs);
+      });
+    };
+    Handlebars.registerHelper("list", function (items, options) {
+      const itemsAsHtml = items.map(
+        (item) => "<li>" + options.fn(item) + "</li>"
+      );
+      return "<ul>\n" + itemsAsHtml.join("\n") + "\n</ul>";
+    });
+    //add html content to div
+    var showContent = function (div, content) {
+      $(div).html(content);
+
+      //---after show, we can see btn OK, then define event for this btn
+      $("#btn_show")
+        .off("click")
+        .on("click", function (e) {
+          var data = req_gl_data({
+            dataZoneDom: $("#div_01"),
+          });
+
+          if (data.hasError == false) {
+            loadTmplAndShow("./tmpl02.html", data.data, "#div_02");
+          }
+        });
+    };
+
+    var data01 = {
+      name: "Alan",
+      hometown: "Somewhere, TX",
+      kids: [
+        { name: "Jimmy", age: "12" },
+        { name: "Sally", age: "4" },
+      ],
+    };
+
+    loadTmplAndShow("./tmpl01.html", data01, "#div_01");
+  </script>
+</html>

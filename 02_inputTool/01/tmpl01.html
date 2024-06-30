@@ -1,0 +1,14 @@
+	<p> Hello, my name is 
+		<input type="text" class="objData" data-name="name" value="{{uppercase name}}">
+		. I am from 
+		<input type="text" class="objData" data-name="hometown" value="{{hometown}}">. I have {{kids.length}} kids:</p>
+    <ul>{{#kids}}
+		<li>
+			{{@index}}.
+			<input type="text" class="objData" data-group="kids"  data-gindex="{{@index}}" data-name="name" value="{{name}}">  is 
+			<input type="text" class="objData" data-group="kids"  data-gindex="{{@index}}" data-name="age" value="{{age}}"> 
+		</li>
+		{{/kids}}
+	</ul>
+	
+	<button id="btn_show" type="button">OK show Modification</button>

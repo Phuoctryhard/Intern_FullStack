@@ -1,0 +1,13 @@
+ClassName                     ; DB_Attribut         ; JS_Attribut                   
+------------------------------;---------------------;-----------------------------------
+           
+TaAutUser                     	; I_ID              ; id                            
+TaAutUser                     	; T_Login        	; login      
+TaAutUser                     	; T_Pass         	; pass    
+TaAutUser                     	; I_Status          ; stat                          
+TaAutUser                     	; I_Type_01         ; typ01                         
+TaAutUser                     	; I_Type_02         ; typ02     
+TaAutUser                 	  	; T_Info_01         ; inf01
+TaAutUser                 	  	; T_Info_02         ; inf02
+TaAutUser                     	; D_Date_01         ; dt01
+TaAutUser                     	; D_Date_02         ; dt02

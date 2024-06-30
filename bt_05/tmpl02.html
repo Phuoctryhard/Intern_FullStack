@@ -1,0 +1,43 @@
+<table id="bang">
+  <tr>
+    <th id="id">ID</th>
+    <th><button id="name">Name</button></th>
+    <th><button id="age">Age</button></th>
+    <th><button id="note">Note</button></th>
+  </tr>
+  {{#each this}}
+  <tr id="vai">
+    <td id="ids">{{ID}}</td>
+    <td id="names">{{name}}</td>
+    <td id="ages">{{age}}</td>
+    <td id="notes">
+      {{#mon}}
+      <select data-name="tenmon" class="objData" id="input">
+        <!--  nó sẽ chọn ra tên môn tương ứng -->
+        {{#select tenmon}}
+        <option value="Toan">Toan</option>
+        <option value="Van">Van</option>
+        <option value="Tieng Anh">Tieng Anh</option>
+        {{/select}}
+      </select>
+      <select data-name="diem" class="objData" id="input">
+        {{#select diem}}
+        <option>{{diem}}</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        {{/select}}
+      </select>
+      {{/mon}}
+    </td>
+  </tr>
+  {{/each}}
+</table>

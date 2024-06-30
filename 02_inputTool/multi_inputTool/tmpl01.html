@@ -1,0 +1,21 @@
+{{#each this}}
+
+<div id="div_{{@index}}" class="div_to_read">
+	<p> ID:
+		<input type="text" class="objData" data-name="ID" value="{{ID}}">.
+		Name:
+		<input type="text" class="objData" data-name="Name" value="{{Name}}">. 
+		Age:
+		<input type="text" class="objData" data-name="Age" value="{{Age}}">
+	</p>
+    <ul>{{#Note}} 
+		<li>
+			<input type="text" class="objData" data-group="Note"  data-gindex="{{@index}}" data-name="name" value="{{name}}">: 
+			<input type="text" class="objData" data-group="Note" data-gindex="{{@index}}"  data-name="val" value="{{val}}"> 
+		</li>
+		{{/Note}}
+	</ul>
+</div>
+{{/each}}
+<button id="btn_show" type="button">Update</button>
+	

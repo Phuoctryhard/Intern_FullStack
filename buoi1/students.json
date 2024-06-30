@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Nguyen Van B",
+    "age": 20
+  },
+  {
+    "name": "Tran Thi A",
+    "age": 22
+  },
+  {
+    "name": "Le Van C",
+    "age": 21
+  },
+  {
+    "name": "Pham Thi D",
+    "age": 23
+  },
+  {
+    "name": "Hoang Van E",
+    "age": 19
+  },
+  {
+    "name": "Ngô Đình Phước",
+    "age": "35"
+  }
+]

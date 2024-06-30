@@ -1,0 +1,6 @@
+Co the dung tomcat, keo thu muc vao tomcat dang chay
+Dung NodeJS + visual studio:
+1. install nodejs
+2. open cmd, cd this folder, then: npm install
+3. open visual studio, run debug, select lite => npm run lite
+4. http://localhost:10001/

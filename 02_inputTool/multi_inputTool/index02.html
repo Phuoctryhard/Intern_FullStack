@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+
+    <script src="jquery-2.2.3.min.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="InputTool.js"></script>
+
+</head>
+
+<body>
+    <div id="div_01"> 123 </div>
+    <hr/>
+    
+    <hr/>
+    <div id="div_02"></div>
+    <hr/>
+    
+</body>
+
+<script>
+	//add new function to Handlebars
+	Handlebars.registerHelper('uppercase', function(str) {
+		var result = str.toUpperCase();   
+		return new Handlebars.SafeString(result);
+	});
+
+    //load template with data
+    var loadTmplAndShow = function(tmplPath, data, divToShow ){
+        $.get(tmplPath, function(html){
+		    var tmpl 	= Handlebars.compile(html);
+		    var rs 		= tmpl(data);
+		    showContent (divToShow, rs);
+	    });
+    }
+	
+	//add html content to div
+	var  showContent = function (div, content){
+		$(div).html(content);
+
+        //---after show, we can see btn OK, then define event for this btn
+        $("#btn_show").off("click").on("click", function(e){
+
+            var lstEtu = [];
+            $(".div_to_read").each(function (index, value){ 
+                var	data = req_gl_data({
+			        dataZoneDom		: $(this)									
+		        });
+                if(data.hasError == false){
+                        lstEtu.push(data.data);
+                }
+            });
+           
+
+           
+            loadTmplAndShow ("./tmpl02.html", lstEtu , "#div_02");               
+            			
+        });
+	}
+	
+	var etudiants=[
+    {"ID":1,
+    "Name":"An An",
+    "Age": 15,
+    "Note":[
+        {name:"Maths", val:15},
+        {name:"Informatique", val:10},
+        {name:"Chimie", val:17},
+        {name:"Anglais", val:15}
+    ]},
+    {"ID":2,
+    "Name":"Bao Bao",
+    "Age":17,
+    "Note":[
+        {name:"Maths", val:15},
+        {name:"Informatique", val:10},
+        {name:"Chimie", val:17},
+        {name:"Anglais", val:15}
+    ]
+    },
+    {"ID":3,
+    "Name":"Long An",
+    "Age":16,
+    "Note":[
+        {name:"Maths", val:15},
+        {name:"Informatique", val:10},
+        {name:"Chimie", val:17},
+        {name:"Anglais", val:15}
+    ]
+    },
+    {"ID":4,
+    "Name":"Ngo Dan",
+    "Age":16,
+    "Note":[
+        {name:"Maths", val:15},
+        {name:"Informatique", val:10},
+        {name:"Chimie", val:17},
+        {name:"Anglais", val:15}
+    ]
+    },
+    {"ID":5,
+    "Name":"Vy Vy",
+    "Age":17,
+    "Note":[
+        {name:"Maths", val:15},
+        {name:"Informatique", val:10},
+        {name:"Chimie", val:17},
+        {name:"Anglais", val:15}
+    ]
+}];
+
+	
+	
+    loadTmplAndShow ("./tmpl01.html",etudiants, "#div_01");
+   
+   
+</script>
+
+</html>

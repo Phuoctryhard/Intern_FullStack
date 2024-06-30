@@ -1,0 +1,9 @@
+1. Download
+   Eclipse: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2022-12/R/eclipse-jee-2022-12-R-win32-x86_64.zip
+   DBEaver: https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe
+   MariaDB hoac MySQL:  https://download.nus.edu.sg/mirror/mariadb/mariadb-10.11.2/winx64-packages/mariadb-10.11.2-winx64.msi
+   
+2. Gen database hnvTrainning_ajax  from db.sql
+3. Create folder D:/tmp/files
+4. Deploy 2 projects on tomcat 8.5 from Eclipse, copy context.xml + server.xml to the this server instance
+5. Verify jre of project

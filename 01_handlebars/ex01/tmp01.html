@@ -1,0 +1,19 @@
+<!--lst nhieu product ID la so co phai string dau ma uppcatr-->
+<!-- sử dụng chữ hóa với  -->
+{{#each this}}
+<tr>
+  <td>{{ID}}</td>
+  <td>{{uppercase Name}}</td>
+  <td>{{Age}}</td>
+  <td>
+    <ul>
+      {{#Note}}
+
+      <li>{{uppercase name}} : {{val}}</li>
+
+      {{/Note}}
+    </ul>
+    {{#list Note}}{{name}} : {{val}}{{/list}}
+  </td>
+</tr>
+{{/each}}

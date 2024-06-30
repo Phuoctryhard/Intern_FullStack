@@ -1,0 +1,61 @@
+<p>
+  Hello, my name is
+  <input
+    type="text"
+    class="objData"
+    data-name="name"
+    value="{{uppercase name}}"
+  />
+  . {{transl 'key_01'}} from
+  <input
+    type="text"
+    class="objData"
+    data-name="hometown"
+    value="{{hometown}}"
+  />. {{transl 'key_02'}} {{kids.length}} kids:
+</p>
+<ul>
+  {{#kids}}
+  <li>
+    {{@index}}.
+    <input
+      type="text"
+      class="objData"
+      data-group="kids"
+      data-gindex="{{@index}}"
+      data-name="name"
+      value="{{name}}"
+    />
+    is
+    <input
+      type="text"
+      class="objData"
+      data-group="kids"
+      data-gindex="{{@index}}"
+      data-name="age"
+      value="{{age}}"
+    />
+  </li>
+  {{/kids}}
+</ul>
+
+I am
+<select data-name="gender" class="objData">
+  {{#select gender}}
+  <option value="man">Man</option>
+  <option value="woman">Woman</option>
+  {{/select}}
+</select>
+
+<button id="btn_show" type="button">OK show Modification</button>
+
+<div>
+  <p>{{transl "name"}}: {{name}}</p>
+  <p>{{transl "hometown"}}: {{hometown}}</p>
+  <p>{{transl "gender"}}: {{transl gender}}</p>
+  <ul>
+    {{#each kids}}
+    <li>{{transl "name"}}: {{name}}, {{age}} {{transl "years_old"}}</li>
+    {{/each}}
+  </ul>
+</div>

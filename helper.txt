@@ -1,0 +1,11 @@
+
++ Hàm chữ hoa :  
+	Handlebars.registerHelper('uppercase', function(str) {
+		var result = str.toUpperCase();   
+		return new Handlebars.SafeString(result);
+	});
+=> {{firstname}} {{uppercase lastname}}
+=> giải thích : uppercase là tên của 1 helper 
+lastname là 1 đối số đối với helper 
+
++ #each:  can iterate over a list using the built-in each helper. Inside the block, you can use this to reference the element being iterated over.
